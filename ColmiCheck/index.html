@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Generador de código QR</title>
+  <link rel="stylesheet" href="styles.css"> <!-- Enlace al archivo CSS -->
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+  <script src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js"></script>
+</head>
+<body>
+
+  <header class="header">
+    <div class="logo">
+      <img src="university-logo.png" alt="University Logo">
+    </div>
+    <nav class="menu">
+      <ul>
+        <li><a href="#">Inicio de Sesión</a></li>
+        <li><a href="#">Validar QR</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <div class="container">
+    <h1>Generador de código QR</h1>
+
+    <div class="card">
+      <form id="qrForm">
+        <div class="form-group">
+          <label for="nombre">Nombre:</label>
+          <input type="text" id="nombre" name="nombre" required>
+        </div>
+
+        <div class="form-group">
+          <label for="matricula">Matrícula:</label>
+          <input type="text" id="matricula" name="matricula" required>
+        </div>
+
+        <div class="form-group">
+          <label for="grupo">Grupo:</label>
+          <input type="text" id="grupo" name="grupo" required>
+        </div>
+
+        <button type="submit" id="generarBtn">Generar código QR</button>
+      </form>
+    </div>
+
+    <div class="qrContainer">
+      <div id="qrCode"></div>
+      <div id="qrData"></div>
+    </div>
+  </div>
+
+  <script>
+    // Función para generar el código QR
+    function generarQR() {
+      var nombre = document.getElementById("nombre").value;
+      var matricula = document.getElementById("matricula").value;
+      var grupo = document.getElementById("grupo").value;
+      var datos = nombre + ", " + matricula + ", " + grupo;
+
+      var qr = new QRCode(document.getElementById("qrCode"), {
+        text: datos,
+        width: 128,
+        height: 128
+      });
+
+      document.getElementById("qrData").textContent = datos; // Mostrar los datos ingresados
+
+      document.getElementById("generarBtn").disabled = true; // Desactivar el botón después de generar el código QR
+    }
+
+    // Manejador de evento para el envío del formulario
+    document.getElementById("qrForm").addEventListener("submit", function(event) {
+      event.preventDefault(); // Evitar que se envíe el formulario
+      generarQR(); // Generar el código QR
+    });
+  </script>
+</body>
+</html>
