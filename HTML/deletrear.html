@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deletrear</title>
+</head>
+<body>
+    <center><h1>Deletrear</h1>
+    <form action="">
+        <label for="">Ingresa una palabra:
+        <input type="text" id="palabra">
+        </label><br>
+        <label for=""><br>
+        <input id="deletrear" type="button" value="Deletrar" onclick="detetrear()">
+        </label>
+
+    </form>
+</center>
+
+
+
+<script>
+    
+    function detetrear(){
+    var palabra = document.getElementById("palabra").value;
+    var dele = [];
+    var delemayus = [];
+    
+        let minus = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "ñ", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
+        let mayus = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "Ñ", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
+        let a = [];
+        let b = [];
+        if (palabra.length > 0){
+            for (let i = 0; i < palabra.length; i++){
+                for (let j = 0; j < minus.length; j++){
+                    if (palabra[i] == minus[j]){
+                        a.push(palabra[i]);
+                    }
+                }
+            }
+            for (let i = 0; i < a.length; i++){
+                dele.push(a[i]);
+                console.log(dele);
+            }
+            if (palabra.length > 0)
+                for (let i = 0; i < palabra.length; i++){
+                    for (let j = 0; j < mayus.length; j++){
+                        if (palabra[i] == mayus[j]){
+                            b.push(palabra[i]);
+                        }
+                    }
+                }
+            for (let i = 0; i < b.length; i++){
+                delemayus.push(b[i]);
+                console.log(delemayus);
+            }
+        }
+    }
+    </script>
+</body>
+</html>
